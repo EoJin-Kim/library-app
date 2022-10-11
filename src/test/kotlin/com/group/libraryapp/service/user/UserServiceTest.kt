@@ -4,7 +4,6 @@ import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
@@ -41,8 +40,8 @@ class UserServiceTest @Autowired constructor(
     fun getUsersTest(){
 
         userRepository.saveAll(listOf(
-            User("A",20),
-            User("B",null)
+            User("A", 20),
+            User("B", null)
         ))
 
         val results = userService.getUsers()
@@ -54,8 +53,8 @@ class UserServiceTest @Autowired constructor(
 
     @Test
     fun updateUserNameTest(){
-        val savedUser = userRepository.save(User("A",null))
-        val request = UserUpdateRequest(savedUser.id,"B")
+        val savedUser = userRepository.save(User("A", null))
+        val request = UserUpdateRequest(savedUser.id!!,"B")
 
 
         userService.updateUserName(request)
@@ -66,7 +65,7 @@ class UserServiceTest @Autowired constructor(
 
     @Test
     fun deleteUserTest(){
-        userRepository.save(User("A",null))
+        userRepository.save(User("A", null))
         userService.deleteUser("A")
 
         assertThat(userRepository.findAll()).isEmpty()
