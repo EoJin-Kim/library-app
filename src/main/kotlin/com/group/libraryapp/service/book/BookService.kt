@@ -21,7 +21,7 @@ class BookService @Autowired constructor(
 
     @Transactional
     fun saveBook(request : BookRequest){
-        val book = Book(request.name)
+        val book = Book(request.name,request.type)
         bookRepository.save(book)
     }
 

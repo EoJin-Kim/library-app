@@ -26,7 +26,7 @@ class UserService @Autowired constructor(
 
     @Transactional(readOnly = true)
     fun getUsers() : List<UserResponse>{
-        return userRepository.findAll().map (::UserResponse)
+        return userRepository.findAll().map {user -> UserResponse.of(user)}
     }
 
     @Transactional
